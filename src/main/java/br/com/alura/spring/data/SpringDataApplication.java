@@ -5,6 +5,7 @@ import br.com.alura.spring.data.repository.CargoRepository;
 import br.com.alura.spring.data.repository.FuncionarioRepository;
 import br.com.alura.spring.data.service.CrudCargoService;
 import br.com.alura.spring.data.service.CrudFuncionarioService;
+import br.com.alura.spring.data.service.RelatorioFuncionarioDinamico;
 import br.com.alura.spring.data.service.RelatoriosService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -18,13 +19,15 @@ public class SpringDataApplication implements CommandLineRunner {
 	private final CrudCargoService cargoService;
 	private final RelatoriosService relatoriosService;
 	private final CrudFuncionarioService funcionarioService;
+	private final RelatorioFuncionarioDinamico relatorioFuncionarioDinamico;
 
 	private final Boolean system = true;
 
-	public SpringDataApplication(CrudCargoService crudCargoService, RelatoriosService relatoriosService, CrudFuncionarioService funcionarioService) {
+	public SpringDataApplication(CrudCargoService crudCargoService, RelatoriosService relatoriosService, CrudFuncionarioService funcionarioService, RelatorioFuncionarioDinamico relatorioFuncionarioDinamico) {
 		this.cargoService = crudCargoService;
 		this.relatoriosService = relatoriosService;
 		this.funcionarioService = funcionarioService;
+		this.relatorioFuncionarioDinamico = relatorioFuncionarioDinamico;
 	}
 
 	public static void main(String[] args) {
@@ -41,6 +44,7 @@ public class SpringDataApplication implements CommandLineRunner {
 			System.out.println("1 - Cargo");
 			System.out.println("2 - Relatorios");
 			System.out.println("3 - Funcionarios");
+			System.out.println("4 - Relatorio funcionario dinamico");
 
 			int action = scanner.nextInt();
 
@@ -53,6 +57,9 @@ public class SpringDataApplication implements CommandLineRunner {
 					break;
 				case 3:
 					funcionarioService.inicial(scanner);
+					break;
+				case 4:
+					relatorioFuncionarioDinamico.inicial(scanner);
 					break;
 				default:
 					break;
